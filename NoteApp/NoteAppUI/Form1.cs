@@ -16,6 +16,8 @@ namespace NoteAppUI
         public Form1()
         {
             InitializeComponent();
+            this.Text = "NoteApp";
+            this.Size = new Size(400, 250);
         }
 
         private void Form1_Load(object sender, EventArgs e)
