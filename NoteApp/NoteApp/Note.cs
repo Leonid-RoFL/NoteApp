@@ -67,7 +67,7 @@ namespace NoteApp
         // Получение даты создания заметки
 
         public DateTime CreationTime { get; set; }
-        public DateTime LastModified { get; private set; }
+        public DateTime LastModified { get; set; }
 
         /// <summary> Инициализация нового экземпляра класса <see cref="Note"/> с значениями по умолчанию </summary>
         
