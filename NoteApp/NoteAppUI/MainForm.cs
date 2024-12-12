@@ -62,6 +62,11 @@ namespace NoteAppUI
                 }
             }
         }
+        private void EditForm_NoteUpdated(Note updatedNote)
+        {
+            TitleNoteViewData.Text = updatedNote.Title;                         // - обновляем заголовок
+            TextAreaNoteViewData.Text = updatedNote.Text;                       // - обновляем текст заметки
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             CreateEditForm createEditForm = new CreateEditForm();
@@ -78,9 +83,9 @@ namespace NoteAppUI
 
                 Note noteToEdit = project.Notes.FirstOrDefault(note => note.Title == selectedNoteTitle);
 
-                /*CreateEditForm editEditForm = new CreateEditForm(noteToEdit);
+                CreateEditForm editEditForm = new CreateEditForm(noteToEdit);
                 editEditForm.NoteUpdated += EditForm_NoteUpdated;               // - подписываемся на событие обновления заметки
-                editEditForm.ShowDialog();*/
+                editEditForm.ShowDialog();
             }
         }
         private void button4_Click(object sender, EventArgs e)
