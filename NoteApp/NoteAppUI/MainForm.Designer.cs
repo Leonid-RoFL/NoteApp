@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.NoteListLB = new System.Windows.Forms.ListBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -46,20 +47,19 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.AreaDataNote = new System.Windows.Forms.Panel();
+            this.CategoryTextNoteViewData = new System.Windows.Forms.Label();
+            this.TitleNoteViewData = new System.Windows.Forms.Label();
             this.EditDataTimeNoteViewData = new System.Windows.Forms.DateTimePicker();
             this.CreateDataTimeNoteViewData = new System.Windows.Forms.DateTimePicker();
-            this.TextAreaNoteViewData = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.TitleNoteViewData = new System.Windows.Forms.Label();
-            this.CategoryTextNoteViewData = new System.Windows.Forms.Label();
             this.UpdateNoteBtn = new System.Windows.Forms.Button();
+            this.TextAreaNoteViewData = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.AreaDataNote.SuspendLayout();
             this.SuspendLayout();
             // 
             // NoteListLB
@@ -98,8 +98,9 @@
             // выйтиToolStripMenuItem
             // 
             this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
-            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.выйтиToolStripMenuItem.Text = "Выйти";
+            this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
             // 
             // изменитьToolStripMenuItem
             // 
@@ -114,20 +115,23 @@
             // создатьToolStripMenuItem
             // 
             this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.создатьToolStripMenuItem.Text = "Создать";
+            this.создатьToolStripMenuItem.Click += new System.EventHandler(this.создатьToolStripMenuItem_Click);
             // 
             // изменитьToolStripMenuItem1
             // 
             this.изменитьToolStripMenuItem1.Name = "изменитьToolStripMenuItem1";
-            this.изменитьToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
+            this.изменитьToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.изменитьToolStripMenuItem1.Text = "Редактировать";
+            this.изменитьToolStripMenuItem1.Click += new System.EventHandler(this.изменитьToolStripMenuItem1_Click);
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить";
+            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
             // 
             // помощьToolStripMenuItem
             // 
@@ -140,8 +144,9 @@
             // оНасToolStripMenuItem
             // 
             this.оНасToolStripMenuItem.Name = "оНасToolStripMenuItem";
-            this.оНасToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.оНасToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.оНасToolStripMenuItem.Text = "О нас";
+            this.оНасToolStripMenuItem.Click += new System.EventHandler(this.оНасToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -201,24 +206,44 @@
             this.CategoryComboBox.TabIndex = 9;
             this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
-            // panel2
+            // AreaDataNote
             // 
-            this.panel2.Controls.Add(this.CategoryTextNoteViewData);
-            this.panel2.Controls.Add(this.TitleNoteViewData);
-            this.panel2.Controls.Add(this.EditDataTimeNoteViewData);
-            this.panel2.Controls.Add(this.CreateDataTimeNoteViewData);
-            this.panel2.Controls.Add(this.TextAreaNoteViewData);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(254, 27);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(534, 368);
-            this.panel2.TabIndex = 10;
+            this.AreaDataNote.Controls.Add(this.TextAreaNoteViewData);
+            this.AreaDataNote.Controls.Add(this.CategoryTextNoteViewData);
+            this.AreaDataNote.Controls.Add(this.TitleNoteViewData);
+            this.AreaDataNote.Controls.Add(this.EditDataTimeNoteViewData);
+            this.AreaDataNote.Controls.Add(this.CreateDataTimeNoteViewData);
+            this.AreaDataNote.Controls.Add(this.label5);
+            this.AreaDataNote.Controls.Add(this.label4);
+            this.AreaDataNote.Controls.Add(this.label3);
+            this.AreaDataNote.Location = new System.Drawing.Point(254, 27);
+            this.AreaDataNote.Name = "AreaDataNote";
+            this.AreaDataNote.Size = new System.Drawing.Size(534, 368);
+            this.AreaDataNote.TabIndex = 10;
+            this.AreaDataNote.Visible = false;
+            // 
+            // CategoryTextNoteViewData
+            // 
+            this.CategoryTextNoteViewData.AutoSize = true;
+            this.CategoryTextNoteViewData.Location = new System.Drawing.Point(78, 42);
+            this.CategoryTextNoteViewData.Name = "CategoryTextNoteViewData";
+            this.CategoryTextNoteViewData.Size = new System.Drawing.Size(10, 13);
+            this.CategoryTextNoteViewData.TabIndex = 8;
+            this.CategoryTextNoteViewData.Text = "-";
+            // 
+            // TitleNoteViewData
+            // 
+            this.TitleNoteViewData.AutoSize = true;
+            this.TitleNoteViewData.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TitleNoteViewData.Location = new System.Drawing.Point(6, 3);
+            this.TitleNoteViewData.Name = "TitleNoteViewData";
+            this.TitleNoteViewData.Size = new System.Drawing.Size(19, 25);
+            this.TitleNoteViewData.TabIndex = 7;
+            this.TitleNoteViewData.Text = "-";
             // 
             // EditDataTimeNoteViewData
             // 
+            this.EditDataTimeNoteViewData.Enabled = false;
             this.EditDataTimeNoteViewData.Location = new System.Drawing.Point(261, 59);
             this.EditDataTimeNoteViewData.Name = "EditDataTimeNoteViewData";
             this.EditDataTimeNoteViewData.Size = new System.Drawing.Size(121, 20);
@@ -226,18 +251,11 @@
             // 
             // CreateDataTimeNoteViewData
             // 
+            this.CreateDataTimeNoteViewData.Enabled = false;
             this.CreateDataTimeNoteViewData.Location = new System.Drawing.Point(67, 59);
             this.CreateDataTimeNoteViewData.Name = "CreateDataTimeNoteViewData";
             this.CreateDataTimeNoteViewData.Size = new System.Drawing.Size(115, 20);
             this.CreateDataTimeNoteViewData.TabIndex = 5;
-            // 
-            // TextAreaNoteViewData
-            // 
-            this.TextAreaNoteViewData.Location = new System.Drawing.Point(11, 93);
-            this.TextAreaNoteViewData.Multiline = true;
-            this.TextAreaNoteViewData.Name = "TextAreaNoteViewData";
-            this.TextAreaNoteViewData.Size = new System.Drawing.Size(520, 275);
-            this.TextAreaNoteViewData.TabIndex = 4;
             // 
             // label5
             // 
@@ -266,34 +284,6 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Категория:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(3, 3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 25);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Заметка";
-            // 
-            // TitleNoteViewData
-            // 
-            this.TitleNoteViewData.AutoSize = true;
-            this.TitleNoteViewData.Location = new System.Drawing.Point(106, 12);
-            this.TitleNoteViewData.Name = "TitleNoteViewData";
-            this.TitleNoteViewData.Size = new System.Drawing.Size(10, 13);
-            this.TitleNoteViewData.TabIndex = 7;
-            this.TitleNoteViewData.Text = "-";
-            // 
-            // CategoryTextNoteViewData
-            // 
-            this.CategoryTextNoteViewData.AutoSize = true;
-            this.CategoryTextNoteViewData.Location = new System.Drawing.Point(78, 42);
-            this.CategoryTextNoteViewData.Name = "CategoryTextNoteViewData";
-            this.CategoryTextNoteViewData.Size = new System.Drawing.Size(10, 13);
-            this.CategoryTextNoteViewData.TabIndex = 8;
-            this.CategoryTextNoteViewData.Text = "-";
-            // 
             // UpdateNoteBtn
             // 
             this.UpdateNoteBtn.Location = new System.Drawing.Point(700, 406);
@@ -304,27 +294,36 @@
             this.UpdateNoteBtn.UseVisualStyleBackColor = true;
             this.UpdateNoteBtn.Click += new System.EventHandler(this.UpdateNoteBtn_Click);
             // 
+            // TextAreaNoteViewData
+            // 
+            this.TextAreaNoteViewData.Location = new System.Drawing.Point(11, 85);
+            this.TextAreaNoteViewData.Multiline = true;
+            this.TextAreaNoteViewData.Name = "TextAreaNoteViewData";
+            this.TextAreaNoteViewData.Size = new System.Drawing.Size(520, 280);
+            this.TextAreaNoteViewData.TabIndex = 9;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.UpdateNoteBtn);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.AreaDataNote);
             this.Controls.Add(this.CategoryComboBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.NoteListLB);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "NoteApp";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.AreaDataNote.ResumeLayout(false);
+            this.AreaDataNote.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,17 +349,16 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox CategoryComboBox;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox TextAreaNoteViewData;
+        private System.Windows.Forms.Panel AreaDataNote;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker EditDataTimeNoteViewData;
         private System.Windows.Forms.DateTimePicker CreateDataTimeNoteViewData;
         private System.Windows.Forms.Label CategoryTextNoteViewData;
         private System.Windows.Forms.Label TitleNoteViewData;
         private System.Windows.Forms.Button UpdateNoteBtn;
+        private System.Windows.Forms.TextBox TextAreaNoteViewData;
     }
 }
 

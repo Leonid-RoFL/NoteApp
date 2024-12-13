@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace NoteApp
 {
@@ -8,13 +9,17 @@ namespace NoteApp
         private string _title;
         private string _text;
         private NoteCategory _category;
+        public Guid Id { get; set; } // Уникальный идентификатор
+
+
 
         /// <summary>
         /// Получает или устанавливает заголовок заметки
         /// 
         /// Ограничен первыми 50 символами. Если пустой, устанавливается "Заметка Текущая дата"
         /// </summary>
-        
+        ///
+
         public string Title
         {
             get => _title;
@@ -22,7 +27,7 @@ namespace NoteApp
             {
                 if (string.IsNullOrEmpty(value) || value == "")
                 {
-                    _title = "Заметка " + DateTime.Now.ToString("d");
+                    _title = "Заметка " + DateTime.Now.ToString("d") + " " + DateTime.Now.TimeOfDay.ToString("g");
                 }
                 else if (value.Length > 50)
                 {
@@ -64,6 +69,8 @@ namespace NoteApp
             }
         }
 
+        
+
         // Получение даты создания заметки
 
         public DateTime CreationTime { get; set; }
@@ -73,6 +80,7 @@ namespace NoteApp
         
         public Note()
         {
+            Id = Guid.NewGuid(); // Генерация уникального
             Title = "Без названия";
             Category = NoteCategory.Other;
             Text = "";
