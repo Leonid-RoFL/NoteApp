@@ -48,6 +48,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.AreaDataNote = new System.Windows.Forms.Panel();
+            this.TextAreaNoteViewData = new System.Windows.Forms.TextBox();
             this.CategoryTextNoteViewData = new System.Windows.Forms.Label();
             this.TitleNoteViewData = new System.Windows.Forms.Label();
             this.EditDataTimeNoteViewData = new System.Windows.Forms.DateTimePicker();
@@ -55,8 +56,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.UpdateNoteBtn = new System.Windows.Forms.Button();
-            this.TextAreaNoteViewData = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.AreaDataNote.SuspendLayout();
@@ -98,7 +97,7 @@
             // выйтиToolStripMenuItem
             // 
             this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
-            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.выйтиToolStripMenuItem.Text = "Выйти";
             this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
             // 
@@ -115,21 +114,21 @@
             // создатьToolStripMenuItem
             // 
             this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.создатьToolStripMenuItem.Text = "Создать";
             this.создатьToolStripMenuItem.Click += new System.EventHandler(this.создатьToolStripMenuItem_Click);
             // 
             // изменитьToolStripMenuItem1
             // 
             this.изменитьToolStripMenuItem1.Name = "изменитьToolStripMenuItem1";
-            this.изменитьToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.изменитьToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
             this.изменитьToolStripMenuItem1.Text = "Редактировать";
             this.изменитьToolStripMenuItem1.Click += new System.EventHandler(this.изменитьToolStripMenuItem1_Click);
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
             // 
@@ -144,7 +143,7 @@
             // оНасToolStripMenuItem
             // 
             this.оНасToolStripMenuItem.Name = "оНасToolStripMenuItem";
-            this.оНасToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.оНасToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.оНасToolStripMenuItem.Text = "О нас";
             this.оНасToolStripMenuItem.Click += new System.EventHandler(this.оНасToolStripMenuItem_Click);
             // 
@@ -222,6 +221,15 @@
             this.AreaDataNote.TabIndex = 10;
             this.AreaDataNote.Visible = false;
             // 
+            // TextAreaNoteViewData
+            // 
+            this.TextAreaNoteViewData.Location = new System.Drawing.Point(11, 85);
+            this.TextAreaNoteViewData.Multiline = true;
+            this.TextAreaNoteViewData.Name = "TextAreaNoteViewData";
+            this.TextAreaNoteViewData.ReadOnly = true;
+            this.TextAreaNoteViewData.Size = new System.Drawing.Size(520, 280);
+            this.TextAreaNoteViewData.TabIndex = 9;
+            // 
             // CategoryTextNoteViewData
             // 
             this.CategoryTextNoteViewData.AutoSize = true;
@@ -284,30 +292,11 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Категория:";
             // 
-            // UpdateNoteBtn
-            // 
-            this.UpdateNoteBtn.Location = new System.Drawing.Point(700, 406);
-            this.UpdateNoteBtn.Name = "UpdateNoteBtn";
-            this.UpdateNoteBtn.Size = new System.Drawing.Size(88, 29);
-            this.UpdateNoteBtn.TabIndex = 3;
-            this.UpdateNoteBtn.Text = "Обновить";
-            this.UpdateNoteBtn.UseVisualStyleBackColor = true;
-            this.UpdateNoteBtn.Click += new System.EventHandler(this.UpdateNoteBtn_Click);
-            // 
-            // TextAreaNoteViewData
-            // 
-            this.TextAreaNoteViewData.Location = new System.Drawing.Point(11, 85);
-            this.TextAreaNoteViewData.Multiline = true;
-            this.TextAreaNoteViewData.Name = "TextAreaNoteViewData";
-            this.TextAreaNoteViewData.Size = new System.Drawing.Size(520, 280);
-            this.TextAreaNoteViewData.TabIndex = 9;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.UpdateNoteBtn);
             this.Controls.Add(this.AreaDataNote);
             this.Controls.Add(this.CategoryComboBox);
             this.Controls.Add(this.panel1);
@@ -357,7 +346,6 @@
         private System.Windows.Forms.DateTimePicker CreateDataTimeNoteViewData;
         private System.Windows.Forms.Label CategoryTextNoteViewData;
         private System.Windows.Forms.Label TitleNoteViewData;
-        private System.Windows.Forms.Button UpdateNoteBtn;
         private System.Windows.Forms.TextBox TextAreaNoteViewData;
     }
 }

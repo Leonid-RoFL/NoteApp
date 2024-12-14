@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NoteApp
 {
@@ -24,9 +26,13 @@ namespace NoteApp
 
         // Метод позволяет удалять существующую заметку из проекта
 
-        public void RemoveNote(Note note)
+        public void RemoveNote(Guid id)
         {
-            Notes.Remove(note);
+            var noteToRemove = Notes.FirstOrDefault(n => n.Id == id);
+            if (noteToRemove != null)
+            {
+                Notes.Remove(noteToRemove);
+            }
         }
     }
 }

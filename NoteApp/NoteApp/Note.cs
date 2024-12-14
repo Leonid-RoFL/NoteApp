@@ -27,7 +27,7 @@ namespace NoteApp
             {
                 if (string.IsNullOrEmpty(value) || value == "")
                 {
-                    _title = "Заметка " + DateTime.Now.ToString("d") + " " + DateTime.Now.TimeOfDay.ToString("g");
+                    _title = "Заметка " + DateTime.Now.ToString("dd.MM.yy HH:mm");
                 }
                 else if (value.Length > 50)
                 {
@@ -68,8 +68,6 @@ namespace NoteApp
                 LastModified = DateTime.Now;
             }
         }
-
-        
 
         // Получение даты создания заметки
 
@@ -114,8 +112,13 @@ namespace NoteApp
             return new Note(Title, Category, Text)
             {
                 CreationTime = this.CreationTime,
-                LastModified = this.LastModified
+                LastModified = this.LastModified,
+                Id = this.Id
             };
+        }
+        public override string ToString()
+        {
+            return Title;
         }
     }
 }

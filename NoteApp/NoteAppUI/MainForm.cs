@@ -57,10 +57,9 @@ namespace NoteAppUI
             {
                 foreach (Note note in project.Notes) 
                 {
-                    if (selectedCategory.ToString() == "All" || note.Category.ToString() == selectedCategory)
+                    if (selectedCategory == "All" || note.Category.ToString() == selectedCategory)
                     {
-                        ListViewItem item = new ListViewItem(note.Title); 
-                        NoteListLB.Items.Add(item.Text); 
+                        NoteListLB.Items.Add(note);
                     }
                 }
             }
@@ -72,31 +71,35 @@ namespace NoteAppUI
             TextAreaNoteViewData.Text = updatedNote.Text; 
         }
 
+        private void OpenCreateEditForm(Note note = null)
+        {
+            CreateEditForm createEditForm = note == null ? new CreateEditForm(this) : new CreateEditForm(this, note);
+            createEditForm.NoteUpdated += OnNoteUpdated;                                                                    
+            createEditForm.ShowDialog();                                                                                    
+        }
+
+        private void OnNoteUpdated(Note updatedNote)
+        {
+            LoadAndDisplayNotes(); // Обновляем список заметок при обновлении
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            CreateEditForm createEditForm = new CreateEditForm(); 
-            createEditForm.ShowDialog(); 
+            OpenCreateEditForm();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (NoteListLB.SelectedItem != null)                                    
+            if (NoteListLB.SelectedItem != null)
             {
-                ProjectManager manager = new ProjectManager(); 
-                Project project = manager.LoadProject(); 
-
-                string selectedNoteTitle = NoteListLB.SelectedItem.ToString(); 
-                Note noteToEdit = project.Notes.FirstOrDefault(note => note.Title == selectedNoteTitle);
-
-                CreateEditForm editEditForm = new CreateEditForm(noteToEdit);
-                editEditForm.NoteUpdated += EditForm_NoteUpdated;
-                editEditForm.ShowDialog(); 
+                var selectedNote = (Note)NoteListLB.SelectedItem;
+                OpenCreateEditForm(selectedNote);
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (NoteListLB.SelectedItem != null) 
+            /*if (NoteListLB.SelectedItem != null) 
             {
                 string selectedNoteTitle = NoteListLB.SelectedItem.ToString();
 
@@ -111,6 +114,19 @@ namespace NoteAppUI
                     manager.SaveProject(project);
                     LoadAndDisplayNotes();
                 }
+            }*/
+
+            if (NoteListLB.SelectedItem != null)
+            {
+                var selectedNote = (Note)NoteListLB.SelectedItem;
+
+                ProjectManager manager = new ProjectManager();
+                Project project = manager.LoadProject();
+
+                project.RemoveNote(selectedNote.Id);
+
+                manager.SaveProject(project);
+                LoadAndDisplayNotes();
             }
         }
 
@@ -152,43 +168,31 @@ namespace NoteAppUI
 
         private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateEditForm createEditForm = new CreateEditForm();  
-            createEditForm.ShowDialog();  
+            OpenCreateEditForm();
         }
 
         private void изменитьToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (NoteListLB.SelectedItem != null)
             {
-                ProjectManager manager = new ProjectManager();
-                Project project = manager.LoadProject(); 
-
-                string selectedNoteTitle = NoteListLB.SelectedItem.ToString(); 
-                Note noteToEdit = project.Notes.FirstOrDefault(note => note.Title == selectedNoteTitle); 
-
-                CreateEditForm editEditForm = new CreateEditForm(noteToEdit);  
-                editEditForm.NoteUpdated += EditForm_NoteUpdated;  
-                editEditForm.ShowDialog(); 
+                var selectedNote = (Note)NoteListLB.SelectedItem;
+                OpenCreateEditForm(selectedNote);
             }
         }
 
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (NoteListLB.SelectedItem != null) 
+            if (NoteListLB.SelectedItem != null)
             {
-                string selectedNoteTitle = NoteListLB.SelectedItem.ToString();  
+                var selectedNote = (Note)NoteListLB.SelectedItem;
 
-                ProjectManager manager = new ProjectManager(); 
+                ProjectManager manager = new ProjectManager();
                 Project project = manager.LoadProject();
 
-                Note noteToRemove = project.Notes.FirstOrDefault(note => note.Title == selectedNoteTitle);  // ищем заметку для удаления  
+                project.RemoveNote(selectedNote.Id);
 
-                if (noteToRemove != null) 
-                {
-                    project.RemoveNote(noteToRemove); 
-                    manager.SaveProject(project);  
-                    LoadAndDisplayNotes(); 
-                }
+                manager.SaveProject(project);
+                LoadAndDisplayNotes();
             }
         }
 

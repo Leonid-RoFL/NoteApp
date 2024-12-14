@@ -15,34 +15,18 @@ namespace NoteAppUI
     {
         private Note _note;                                                         // Переменная для хранения заметки, если форма открыта для редактирования
         private bool _isEditing;                                                    // Флаг, указывающий, находимся ли мы в режиме редактирования заметки
-        private Timer autoSaveTimer;                                                // Таймер для автосохранения
         private bool _hasChanges;                                                   // Флаг для отслеживания изменений
+        private MainForm _mainForm;
 
         public event Action<Note> NoteUpdated;                                      // Событие, вызываемое при обновлении заметки
 
-        public CreateEditForm()
+        public CreateEditForm(MainForm mainForm)
         {
-            InitializeComponent();                                                  // Инициализация компонентов формы
+            InitializeComponent();                                 // Инициализация компонентов формы
+            _mainForm = mainForm;
             _isEditing = false;
             InitializeComboBox();                                                   // Инициализация выпадающего списка категорий
-            InitializeAutoSave();                                                   // Инициализация автосохранения
             _hasChanges = false;                                                    // Изначально изменений нет
-        }
-
-        private void InitializeAutoSave()
-        {
-            autoSaveTimer = new Timer();
-            autoSaveTimer.Interval = 10000;                                         // Установка интервала на 10 секунд (10000 мс)
-            autoSaveTimer.Tick += AutoSaveTimer_Tick;                               // Связываем событие
-            autoSaveTimer.Start();                                                  // Запускаем таймер
-        }
-
-        private void AutoSaveTimer_Tick(object sender, EventArgs e)
-        {
-            if (_hasChanges == true)                                                // Проверяем, были ли изменения
-            {
-                SaveNotes();                                                        // Вызываем метод сохранения заметок
-            }
         }
 
         private void SaveNotes()
@@ -56,13 +40,12 @@ namespace NoteAppUI
 
             if (project == null)
             {
-                return;
+                return;                                                             // Если проект не загружен, выходим
             }
 
-            if (_isEditing && _note != null)                                        // Проверяем, что мы в режиме редактирования и _note не null
+            if (_isEditing && _note != null)                                        // Режим редактирования
             {
                 var existingNote = project.Notes.FirstOrDefault(note => note.Id == _note.Id);
-
                 if (existingNote != null)                                           // Если заметка найдена, обновляем её
                 {
                     existingNote.Title = title;                                     // Обновляем заголовок
@@ -71,11 +54,16 @@ namespace NoteAppUI
                     existingNote.LastModified = DateTime.Now;                       // Обновляем время последнего изменения
 
                     manager.SaveProject(project);                                   // Сохраняем изменения в проекте
-                    _hasChanges = false;                                            // Сбрасываем флаг изменений после успешного сохранения
                 }
             }
-            else if (!_isEditing)                                                   // Если создается новая заметка
+            else                                                                    // Если создается новая заметка
             {
+                if (project.Notes.Any(note => note.Title.Equals(title, StringComparison.OrdinalIgnoreCase)))
+                {
+                    MessageBox.Show("Заметка с таким заголовком уже существует.");
+                    return;                                                         // Прерываем выполнение метода, если дубликат найден
+                }
+
                 Note newNote = new Note(title, category, text)
                 {
                     Id = Guid.NewGuid(),                                            // Генерация уникального идентификатора
@@ -85,7 +73,6 @@ namespace NoteAppUI
 
                 project.AddNote(newNote);                                           // Добавляем новую заметку в проект
                 manager.SaveProject(project);                                       // Сохраняем изменения в проекте
-                _hasChanges = false;                                                // Сбрасываем флаг изменений после успешного сохранения
             }
         }
 
@@ -98,8 +85,7 @@ namespace NoteAppUI
             button1.Text = _isEditing ? "Обновить" : "Создать";                     // - устанавливаем текст кнопки в зависимости от режима (редактирование или создание)
         }
 
-        // Конструктор редактирования заметки
-        public CreateEditForm(Note note) : this()
+        public CreateEditForm(MainForm mainForm, Note note) : this(mainForm)
         {
             _note = note;                                                           // - сохраняем переданную заметку
             _isEditing = true;                                               
@@ -125,51 +111,19 @@ namespace NoteAppUI
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            string title = TitleNoteTextBox.Text;                                  
-            NoteCategory category = (NoteCategory)CategoryComboBox.SelectedItem;   // - присваиваем категорию заметки
-
-            string text = TextNoteTextBox.Text;                             
-
-            if (_isEditing)                                                        // - проверяем, находимся ли мы в режиме редактирования
-            {
-                ProjectManager manager = new ProjectManager();             
-                Project project = manager.LoadProject();                  
-
-                // Поиск и удаление заметки
-                var noteToRemove = project.Notes.FirstOrDefault(note => note.CreationTime == _note.CreationTime);
-
-                if (noteToRemove != null)                                          
-                {
-                    project.RemoveNote(noteToRemove);                              
-                }
-
-                // Создание заметки с обновлёнными данными
-                Note updatedNote = new Note(title, category, text)          
-                {
-                    LastModified = DateTime.Now                             
-                };
-
-                project.AddNote(updatedNote);                               
-                manager.SaveProject(project);                               
-                NoteUpdated?.Invoke(_note);                                 
-            }
-            else                                                            
-            {
-                Note newNote = new Note(title, category, text);           
-
-                ProjectManager manager = new ProjectManager();             
-                Project project = manager.LoadProject();                   
-
-                project.AddNote(newNote);                                   
-                manager.SaveProject(project);                               
-            }
-
-            this.Close();                                                            // - закрываем форму после завершения редактирования заметки
+            SaveNotes();                                                           // Вызываем метод сохранения перед закрытием формы
+            NoteUpdated?.Invoke(_note);
+            this.Close();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            this.Close();                                                            // - закрываем форму при нажатии на кнопку назад
+            this.Close();                                                          // - закрываем форму при нажатии на кнопку назад
+        }
+
+        private void CreateEditForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
