@@ -22,7 +22,7 @@ namespace NoteAppUI
 
         public CreateEditForm(MainForm mainForm)
         {
-            InitializeComponent();                                 // Инициализация компонентов формы
+            InitializeComponent();                                                  // Инициализация компонентов формы
             _mainForm = mainForm;
             _isEditing = false;
             InitializeComboBox();                                                   // Инициализация выпадающего списка категорий
@@ -78,6 +78,11 @@ namespace NoteAppUI
 
         private void CreateEditForm_Load_1(object sender, EventArgs e)
         {
+            dateTimeCreate.Format = DateTimePickerFormat.Custom;
+            dateTimeCreate.CustomFormat = "dd.MM.yy HH:mm";
+            dateTimeUpdate.Format = DateTimePickerFormat.Custom;
+            dateTimeUpdate.CustomFormat = "dd.MM.yy HH:mm";
+
             dateTimeCreate.Enabled = false;                                   
             dateTimeUpdate.Enabled = false;
             _hasChanges = true;
@@ -92,6 +97,7 @@ namespace NoteAppUI
             LoadNoteData();                                                         // - загружаем данные заметки в элементы управления формы
         }
 
+        // Загрузка данных заметки
         private void LoadNoteData()
         {
             TitleNoteTextBox.Text = _note.Title;                              
@@ -99,6 +105,7 @@ namespace NoteAppUI
             TextNoteTextBox.Text = _note.Text;                                
         }
 
+        // Выпадающий список категорий
         private void InitializeComboBox()
         {
             foreach (var category in Enum.GetValues(typeof(NoteCategory)))   // - добавляем все категории из перечисления NoteCategory
@@ -109,6 +116,7 @@ namespace NoteAppUI
             CategoryComboBox.SelectedIndex = 6;                                    // - устанавливаем выбранный индекс на категорию (other)
         }
 
+        // Кнопка "Создать"
         private void button1_Click_1(object sender, EventArgs e)
         {
             SaveNotes();                                                           // Вызываем метод сохранения перед закрытием формы
@@ -116,11 +124,13 @@ namespace NoteAppUI
             this.Close();
         }
 
+        // Кнопка "Назад"
         private void button2_Click_1(object sender, EventArgs e)
         {
             this.Close();                                                          // - закрываем форму при нажатии на кнопку назад
         }
 
+        // Закрытие формы
         private void CreateEditForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Close();

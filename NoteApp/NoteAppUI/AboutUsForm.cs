@@ -20,11 +20,13 @@ namespace NoteAppUI
             
         }
 
+        // Электронная почта
         private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("mailto:larin_leonid01@mail.ru");
         }
-
+        
+        // Ссылка на GitHub
         private void linkLabel2_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/Leonid-RoFL/NoteApp");

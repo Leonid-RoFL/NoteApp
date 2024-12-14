@@ -37,6 +37,7 @@ namespace NoteAppUI
             CategoryComboBox.SelectedIndex = 0;                                     // - по умолчанию выбрана категория "Все"
         }
 
+        // Загрузка заметок и их отображение в пользовательском интерфейсе
         public void LoadAndDisplayNotes()
         {
             ProjectManager manager = new ProjectManager(); 
@@ -65,12 +66,7 @@ namespace NoteAppUI
             }
         }
 
-        private void EditForm_NoteUpdated(Note updatedNote)
-        {
-            TitleNoteViewData.Text = updatedNote.Title; 
-            TextAreaNoteViewData.Text = updatedNote.Text; 
-        }
-
+        // Открытие формы для создания и редактирования заметки
         private void OpenCreateEditForm(Note note = null)
         {
             CreateEditForm createEditForm = note == null ? new CreateEditForm(this) : new CreateEditForm(this, note);
@@ -78,16 +74,19 @@ namespace NoteAppUI
             createEditForm.ShowDialog();                                                                                    
         }
 
+        // Обновление списка заметок
         private void OnNoteUpdated(Note updatedNote)
         {
             LoadAndDisplayNotes(); // Обновляем список заметок при обновлении
         }
 
+        // Кнопка "Добавить"
         private void button2_Click(object sender, EventArgs e)
         {
             OpenCreateEditForm();
         }
 
+        // Кнопка "Изменить"
         private void button3_Click(object sender, EventArgs e)
         {
             if (NoteListLB.SelectedItem != null)
@@ -97,25 +96,9 @@ namespace NoteAppUI
             }
         }
 
+        // Кнопка "Удалить"
         private void button4_Click(object sender, EventArgs e)
         {
-            /*if (NoteListLB.SelectedItem != null) 
-            {
-                string selectedNoteTitle = NoteListLB.SelectedItem.ToString();
-
-                ProjectManager manager = new ProjectManager(); 
-                Project project = manager.LoadProject();
-
-                Note noteToRemove = project.Notes.FirstOrDefault(note => note.Title == selectedNoteTitle); // - поиск заметки для удаления
-
-                if (noteToRemove != null)
-                {
-                    project.RemoveNote(noteToRemove);
-                    manager.SaveProject(project);
-                    LoadAndDisplayNotes();
-                }
-            }*/
-
             if (NoteListLB.SelectedItem != null)
             {
                 var selectedNote = (Note)NoteListLB.SelectedItem;
@@ -129,12 +112,14 @@ namespace NoteAppUI
                 LoadAndDisplayNotes();
             }
         }
-
+        
+        // Категория заметок
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadAndDisplayNotes();
         }
 
+        // Список заметок
         private void NoteListLB_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (NoteListLB.SelectedItem != null)
@@ -161,16 +146,13 @@ namespace NoteAppUI
             }
         }
 
-        private void UpdateNoteBtn_Click(object sender, EventArgs e)
-        {
-            LoadAndDisplayNotes();   
-        }
-
+        // Кнопка "Создать" в меню "Изменить"
         private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenCreateEditForm();
         }
 
+        // Кнопка "Редактировать" в меню "Изменить"
         private void изменитьToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (NoteListLB.SelectedItem != null)
@@ -180,6 +162,7 @@ namespace NoteAppUI
             }
         }
 
+        // Кнопка "Удалить" в меню "Изменить"
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (NoteListLB.SelectedItem != null)
@@ -196,11 +179,13 @@ namespace NoteAppUI
             }
         }
 
+        // Кнопка "Выйти" в меню "Файл"
         private void выйтиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();                                                                                   // закрываем форму при выборе выхода из приложения  
         }
 
+        // Кнопка "О нас" в меню "Помощь"
         private void оНасToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutUsForm aboutForm = new AboutUsForm();                                                      // создаем форму "О нас"   

@@ -111,6 +111,7 @@
             this.TextNoteTextBox.Location = new System.Drawing.Point(16, 116);
             this.TextNoteTextBox.Multiline = true;
             this.TextNoteTextBox.Name = "TextNoteTextBox";
+            this.TextNoteTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextNoteTextBox.Size = new System.Drawing.Size(718, 410);
             this.TextNoteTextBox.TabIndex = 8;
             // 
