@@ -103,13 +103,22 @@ namespace NoteAppUI
             {
                 var selectedNote = (Note)NoteListLB.SelectedItem;
 
-                ProjectManager manager = new ProjectManager();
-                Project project = manager.LoadProject();
+                var questionDelete = MessageBox.Show(
+                    "Вы уверены, что хотите удалить эту заметку?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
-                project.RemoveNote(selectedNote.Id);
+                if (questionDelete == DialogResult.Yes)
+                {
+                    ProjectManager manager = new ProjectManager();
+                    Project project = manager.LoadProject();
 
-                manager.SaveProject(project);
-                LoadAndDisplayNotes();
+                    project.RemoveNote(selectedNote.Id);
+
+                    manager.SaveProject(project);
+                    LoadAndDisplayNotes();
+                }
             }
         }
         
@@ -169,13 +178,22 @@ namespace NoteAppUI
             {
                 var selectedNote = (Note)NoteListLB.SelectedItem;
 
-                ProjectManager manager = new ProjectManager();
-                Project project = manager.LoadProject();
+                var questionDelete = MessageBox.Show(
+                    "Вы уверены, что хотите удалить эту заметку?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
-                project.RemoveNote(selectedNote.Id);
+                if (questionDelete == DialogResult.Yes)
+                {
+                    ProjectManager manager = new ProjectManager();
+                    Project project = manager.LoadProject();
 
-                manager.SaveProject(project);
-                LoadAndDisplayNotes();
+                    project.RemoveNote(selectedNote.Id);
+
+                    manager.SaveProject(project);
+                    LoadAndDisplayNotes();
+                }
             }
         }
 

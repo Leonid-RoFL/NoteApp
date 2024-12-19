@@ -63,6 +63,8 @@
             // 
             // NoteListLB
             // 
+            this.NoteListLB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.NoteListLB.FormattingEnabled = true;
             this.NoteListLB.Location = new System.Drawing.Point(12, 53);
             this.NoteListLB.Name = "NoteListLB";
@@ -158,6 +160,7 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
@@ -198,6 +201,7 @@
             // 
             // CategoryComboBox
             // 
+            this.CategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CategoryComboBox.FormattingEnabled = true;
             this.CategoryComboBox.Location = new System.Drawing.Point(81, 27);
             this.CategoryComboBox.Name = "CategoryComboBox";
@@ -207,6 +211,9 @@
             // 
             // AreaDataNote
             // 
+            this.AreaDataNote.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.AreaDataNote.Controls.Add(this.TextAreaNoteViewData);
             this.AreaDataNote.Controls.Add(this.CategoryTextNoteViewData);
             this.AreaDataNote.Controls.Add(this.TitleNoteViewData);
@@ -223,6 +230,9 @@
             // 
             // TextAreaNoteViewData
             // 
+            this.TextAreaNoteViewData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextAreaNoteViewData.Location = new System.Drawing.Point(11, 85);
             this.TextAreaNoteViewData.Multiline = true;
             this.TextAreaNoteViewData.Name = "TextAreaNoteViewData";
@@ -251,6 +261,8 @@
             // 
             // EditDataTimeNoteViewData
             // 
+            this.EditDataTimeNoteViewData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EditDataTimeNoteViewData.Enabled = false;
             this.EditDataTimeNoteViewData.Location = new System.Drawing.Point(261, 59);
             this.EditDataTimeNoteViewData.Name = "EditDataTimeNoteViewData";
@@ -259,6 +271,8 @@
             // 
             // CreateDataTimeNoteViewData
             // 
+            this.CreateDataTimeNoteViewData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CreateDataTimeNoteViewData.Enabled = false;
             this.CreateDataTimeNoteViewData.Location = new System.Drawing.Point(67, 59);
             this.CreateDataTimeNoteViewData.Name = "CreateDataTimeNoteViewData";
@@ -267,6 +281,8 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(189, 65);
             this.label5.Name = "label5";
@@ -276,6 +292,8 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(8, 65);
             this.label4.Name = "label4";
@@ -305,6 +323,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "MainForm";
             this.Text = "NoteApp";
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -78,10 +78,12 @@ namespace NoteAppUI
 
         private void CreateEditForm_Load_1(object sender, EventArgs e)
         {
-            dateTimeCreate.Format = DateTimePickerFormat.Custom;
-            dateTimeCreate.CustomFormat = "dd.MM.yy HH:mm";
-            dateTimeUpdate.Format = DateTimePickerFormat.Custom;
-            dateTimeUpdate.CustomFormat = "dd.MM.yy HH:mm";
+            //dateTimeCreate.Format = DateTimePickerFormat.Custom;
+            //dateTimeCreate.CustomFormat = "dd.MM.yy";
+            //dateTimeUpdate.Format = DateTimePickerFormat.Custom;
+            //dateTimeUpdate.CustomFormat = "dd.MM.yy";
+
+            TitleNoteTextBox.TextChanged += TitleNoteTextBox_TextChanged;
 
             dateTimeCreate.Enabled = false;                                   
             dateTimeUpdate.Enabled = false;
@@ -134,6 +136,20 @@ namespace NoteAppUI
         private void CreateEditForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Close();
+        }
+
+        // Предупреждение (50 символов или бан)
+        private void TitleNoteTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (TitleNoteTextBox.Text.Length >= 50)
+            {
+                errorLabel.Text = "Заголовок не должен превышать 50 символов";
+                errorLabel.Visible = true;
+            }
+            else
+            {
+                errorLabel.Visible = false;
+            }
         }
     }
 }
